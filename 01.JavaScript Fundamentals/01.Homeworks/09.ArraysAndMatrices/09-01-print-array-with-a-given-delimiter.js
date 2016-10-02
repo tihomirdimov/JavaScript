@@ -1,3 +1,4 @@
-function printArrayWithGivenDelimiter(input) {
-    let result = [];
+function solve (input) {
+    let delimiter = input.pop();
+    console.log(input.join(delimiter));
 }
