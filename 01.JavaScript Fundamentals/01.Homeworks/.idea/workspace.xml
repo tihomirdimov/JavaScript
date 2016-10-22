@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee33a01b-6bc8-4cdc-9a98-61efd5934ae6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../02.Exams/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../02.Exams/2016-10-16/Problem04.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../02.JavaScript Advanced/01.Homeworks" afterPath="" />
     </list>
     <ignored path="01.Homeworks.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -233,24 +232,14 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="01.Homeworks" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="01.Homeworks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="01.Homeworks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -400,6 +389,7 @@
       <workItem from="1477077893051" duration="43000" />
       <workItem from="1477078084617" duration="144000" />
       <workItem from="1477102501221" duration="26000" />
+      <workItem from="1477105743486" duration="35000" />
     </task>
     <task id="LOCAL-00001" summary="hw problems js 01">
       <created>1474529166142</created>
@@ -531,7 +521,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98129000" />
+    <option name="totallyTimeSpent" value="98164000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1374" height="748" extended-state="6" />
