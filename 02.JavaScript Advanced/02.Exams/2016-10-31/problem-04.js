@@ -20,7 +20,6 @@ class TitleBar {
         visibilityButton.addClass('button');
         visibilityButton.click(() => {
             let menuContainer = $('.drawer');
-
             if (menuContainer.css('display').toLowerCase() === 'block') {
                 menuContainer.css('display', 'none');
             } else {

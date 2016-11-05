@@ -25,7 +25,7 @@ describe('shared-object', function () {
         });
 
         it('should change the name if the new name string is not a empty string', function () {
-            let input = 'Yani';
+            let input = 'Test';
             let expectedOutput = input;
             sharedObject.changeName(input);
             expect(sharedObject.name).to.be.equal(expectedOutput, 'Object changed the name property when the input was invalid');
@@ -81,7 +81,7 @@ describe('shared-object', function () {
         });
 
         it('should change the name property when the textbox is not empty', function () {
-            $('#name').val('Yanislav');
+            $('#name').val('Testtest');
             let expectedOutput = $('#name').val();
             sharedObject.updateName();
             expect(sharedObject.name).to.be.equal(expectedOutput, 'Object did not chang the name property when the input was valid string');
