@@ -3,7 +3,6 @@ class TitleBar {
         this.title = pageTitle;
         this.list = $('<nav class="menu">');
     }
-
     addLink (href, linkName) {
         let newLink = $('<a>');
         newLink.text(linkName);
@@ -11,7 +10,6 @@ class TitleBar {
         newLink.attr('href', href);
         this.list.append(newLink);
     }
-
     appendTo (selector) {
         let titleSpan = $('<span>');
         titleSpan.addClass('title');
