@@ -1,7 +1,5 @@
 let expect = require('chai').expect;
-let sharedObject = require('../shared-object');
-
-
+let sharedObject = require('../04-shared-object');
 
 describe('shared-object', function () {
 
