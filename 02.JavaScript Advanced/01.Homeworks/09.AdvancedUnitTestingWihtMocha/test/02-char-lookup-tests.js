@@ -1,7 +1,7 @@
 let expect = require('chai').expect;
 let lookupChar = require('../02-char-lookup.js').lookupChar;
 
-describe('02-char-lookup.js tests', () => {
+describe('02-char-lookup.js test', () => {
     it('should return "d" when the input is ("abcd", 3)', () => {
         let expectedOutput = 'd';
         expect(lookupChar('abcd', 3)).to.be.equal(expectedOutput, 'Function did not return correct output when the input values are correct');

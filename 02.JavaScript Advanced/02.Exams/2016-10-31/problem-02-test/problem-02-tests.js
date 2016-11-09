@@ -1,7 +1,7 @@
 let sortedList = require("./problem-02.js").sortedList;
 let expect = require("chai").expect;
 
-describe("SortedList tests",function () {
+describe("SortedList test",function () {
     let sortedList;
     beforeEach(function () {
         sortedList = new SortedList();

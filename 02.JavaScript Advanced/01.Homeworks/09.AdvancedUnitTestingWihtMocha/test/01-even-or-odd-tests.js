@@ -1,6 +1,6 @@
 let expect = require('chai').expect;
 let isOddOrEven = require('../01-even-or-odd.js').isOddOrEven;
-describe('01-even-or-odd.js tests', function () {
+describe('01-even-or-odd.js test', function () {
     it('should return odd when the input is string with 3 characters', function () {
         let expectedOutput = 'odd';
         let input = 'tri';
