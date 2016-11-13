@@ -1,7 +1,7 @@
 let expect = require('chai').expect;
-let list = require('../problem-02/02-add-delete-in-list').list;
+let list = require('../problem-02/problem-02').list;
 
-describe('02-add-delete-in-list tests', () => {
+describe('problem-02', () => {
 
     it('should have "add, delete and toString", functions', function () {
         expect(typeof(list.add)).to.equal('function', 'List object did not have "add" function');
@@ -18,13 +18,6 @@ describe('02-add-delete-in-list tests', () => {
             list.add(5);
             expect(list.toString()).to.equal('5', 'Add function did not print correct output after adding one number');
         });
-
-
-        it('should return correct string after using "toString" on single number', function () {
-            list.add(5);
-            expect(list.toString()).to.equal('5', '"Add" function did not add correct number');
-        });
-
 
         it('should print strings correctly', function () {
             list.add('Mercedes');
