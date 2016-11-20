@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Load content</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+            crossorigin="anonymous">
+
+    </script>
+</head>
+<body>
+<div id="text">
+    <h1>AJAX jQuery.load()</h1>
+    <button onclick="loadTitle()">Load Title</button>
+</div>
+<script>
+    function loadTitle() {
+        $('#text').load("text.html");
+    }
+</script>
+</body>
+</html>
