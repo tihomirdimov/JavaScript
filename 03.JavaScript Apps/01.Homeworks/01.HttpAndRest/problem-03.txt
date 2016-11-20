@@ -1,0 +1,47 @@
+https://api.github.com/repos/testnakov/test-nakov-repo/issues
+
+{"title":"Found a bug",
+ "body": "I'm having a problem with this."}
+
+{
+  "url": "https://api.github.com/repos/testnakov/test-nakov-repo/issues/160",
+  "repository_url": "https://api.github.com/repos/testnakov/test-nakov-repo",
+  "labels_url": "https://api.github.com/repos/testnakov/test-nakov-repo/issues/160/labels{/name}",
+  "comments_url": "https://api.github.com/repos/testnakov/test-nakov-repo/issues/160/comments",
+  "events_url": "https://api.github.com/repos/testnakov/test-nakov-repo/issues/160/events",
+  "html_url": "https://github.com/testnakov/test-nakov-repo/issues/160",
+  "id": 190550130,
+  "number": 160,
+  "title": "Found a bug",
+  "user": {
+    "login": "tihomirdimov",
+    "id": 17923560,
+    "avatar_url": "https://avatars.githubusercontent.com/u/17923560?v=3",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/tihomirdimov",
+    "html_url": "https://github.com/tihomirdimov",
+    "followers_url": "https://api.github.com/users/tihomirdimov/followers",
+    "following_url": "https://api.github.com/users/tihomirdimov/following{/other_user}",
+    "gists_url": "https://api.github.com/users/tihomirdimov/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/tihomirdimov/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/tihomirdimov/subscriptions",
+    "organizations_url": "https://api.github.com/users/tihomirdimov/orgs",
+    "repos_url": "https://api.github.com/users/tihomirdimov/repos",
+    "events_url": "https://api.github.com/users/tihomirdimov/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/tihomirdimov/received_events",
+    "type": "User",
+    "site_admin": false
+  },
+  "labels": [],
+  "state": "open",
+  "locked": false,
+  "assignee": null,
+  "assignees": [],
+  "milestone": null,
+  "comments": 0,
+  "created_at": "2016-11-20T10:18:24Z",
+  "updated_at": "2016-11-20T10:18:24Z",
+  "closed_at": null,
+  "body": "I'm having a problem with this.",
+  "closed_by": null
+}
