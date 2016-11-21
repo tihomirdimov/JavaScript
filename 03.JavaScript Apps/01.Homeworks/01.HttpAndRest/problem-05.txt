@@ -1,0 +1,6 @@
+https://test-707a6.firebaseio.com/books/1.json
+
+{
+  "author": "Ivan Vazov",
+  "title": "Under the Yoke"
+}
