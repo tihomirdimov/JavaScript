@@ -6,6 +6,8 @@ function programEngine() {
     let authHeaders = {'Authorization': `Basic ${baseauth}`, 'Content-Type': 'application/json'};
 
     loadCountries();
+    let currentCountryId = '';
+    let currentCountryName = '';
 
     function loadCountries() {
         let getCountriesRequest = {
@@ -24,10 +26,10 @@ function programEngine() {
         for (let country of countries) {
             $('#countries')
                 .append($('<tr/>')
-                    .addClass('country-info')
-                    .attr('country-id', country._id)
-                    .attr('country-name', country.name)
                     .append($('<td/>')
+                        .addClass('country-info')
+                        .attr('country-id', country._id)
+                        .attr('country-name', country.name)
                         .text(country.name))
                     .append($('<td/>')
                         .append($('<button/>')
@@ -49,6 +51,12 @@ function programEngine() {
                     .append($('<button/>')
                         .attr('id', 'country-add-change-button')
                         .text('Add'))));
+        $('.country-info').click(function (event) {
+            currentCountryId = $(event.currentTarget).attr('country-id');
+            currentCountryName = $(event.currentTarget).attr('country-name');
+            displaySelectedCountry();
+            loadTowns();
+        });
         $('.country-edit-button').click(editCountry);
         $('.country-delete-button').click(deleteCountry);
         $('#country-add-change-button').click(addCountry);
@@ -112,7 +120,121 @@ function programEngine() {
             .catch(displayError);
     }
 
+    function loadTowns(event) {
+        let getTownsRequest = {
+            method: 'GET',
+            url: `${url}/towns?query={"country_id":"${currentCountryId}"}`,
+            headers: authHeaders
+        };
+        $.ajax(getTownsRequest)
+            .then(displayTowns)
+            .catch(displayError);
+    }
+
+    function displayTowns(towns) {
+        $('#towns').find('tr:not(:first)').remove();
+        towns.sort((a, b) => a.name > b.name);
+        for (let town of towns) {
+            $('#towns')
+                .append($('<tr/>')
+                    .attr('town-id', town._id)
+                    .attr('town-name', town.name)
+                    .attr('country-id', currentCountryId)
+                    .append($('<td/>')
+                        .addClass('town-info')
+                        .text(town.name))
+                    .append($('<td/>')
+                        .append($('<button/>')
+                            .addClass('town-edit-button')
+                            .attr('town-id', town._id)
+                            .attr('town-name', town.name)
+                            .attr('country-id', currentCountryId)
+                            .text('Edit'))
+                        .append($('<button/>')
+                            .addClass('town-delete-button')
+                            .attr('town-id', town._id)
+                            .text('Delete'))));
+        }
+        $('#towns')
+            .append($('<tr/>')
+                .append($('<td/>')
+                    .append($('<input/>')
+                        .attr('id', 'town-add-change-input')))
+                .append($('<td/>')
+                    .append($('<button/>')
+                        .attr('id', 'town-add-change-button')
+                        .text('Add'))));
+        $('.town-edit-button').click(editTown);
+        $('.town-delete-button').click(deleteTown);
+        $('#town-add-change-button').click(addTown);
+    }
+
+    function addTown() {
+        let newTown = $('#town-add-change-input').val();
+        if (newTown !== '') {
+            let data = {
+                name: newTown,
+                country_id: currentCountryId
+            };
+            let addTownRequest = {
+                method: 'POST',
+                url: `${url}/towns`,
+                headers: authHeaders,
+                data: JSON.stringify(data)
+            };
+
+            $.ajax(addTownRequest)
+                .then(loadTowns)
+                .catch(displayError);
+        }
+    }
+
+    function editTown(event) {
+        $('#town-add-change-button').off('click');
+        let townId = $(event.currentTarget).attr('town-id');
+        let townName = $(event.currentTarget).attr('town-name');
+        $('#town-add-change-input').val(townName);
+        $('#town-add-change-button').text('Change');
+        $('#town-add-change-button').click(function () {
+            let changedTownName = $('#town-add-change-input').val();
+            if (changedTownName !== '') {
+                let data = {
+                    name: changedTownName,
+                    country_id: currentCountryId
+                };
+                let addTownRequest = {
+                    method: 'PUT',
+                    url: `${url}/towns/${townId}`,
+                    headers: authHeaders,
+                    data: JSON.stringify(data)
+                };
+
+                $.ajax(addTownRequest)
+                    .then(loadTowns)
+                    .catch(displayError);
+            }
+        });
+    }
+
+    function deleteTown(event) {
+        let townId = $(event.currentTarget).attr('town-id');
+        let deleteTownRequest = {
+            method: 'DELETE',
+            url: `${url}/towns/${townId}`,
+            headers: authHeaders
+        };
+
+        $.ajax(deleteTownRequest)
+            .then(loadTowns)
+            .catch(displayError);
+    }
+
+    function displaySelectedCountry() {
+        $('#error').html(currentCountryName);
+    }
+
     function displayError(error) {
         $('#error').html(error);
     }
+
 }

@@ -5,15 +5,32 @@
     <title>Countries and Towns</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="./02-countries-and-towns.js"></script>
+    <style>
+        body{
+            text-align: center;
+        }
+        table {
+            vertical-align: top;
+            display: inline-block;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-<table class="results" id="countries">
-    <tr>
-        <th>Country</th>
-        <th>Actions</th>
-    </tr>
-</table>
-<div id ="error"></div>
+    <table class="results" id="countries">
+        <tr>
+            <th>Country</th>
+            <th>Actions</th>
+        </tr>
+    </table>
+    <table class="results" id="towns">
+        <tr>
+            <th>Town</th>
+            <th>Actions</th>
+        </tr>
+    </table>
+    <div id="selected country"></div>
+    <div id="error"></div>
 <script>
     programEngine();
 </script>
