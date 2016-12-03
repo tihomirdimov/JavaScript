@@ -70,8 +70,8 @@ function prodavachnikApp() {
     }
 
     function showCreateAdView() {
-        $('#formCreatead').trigger('reset');
-        showView('viewCreatead');
+        $('#formCreateAd').trigger('reset');
+        showView('viewCreateAd');
     }
 
     function registerUser() {
@@ -100,9 +100,8 @@ function prodavachnikApp() {
         sessionStorage.setItem('authToken', userAuth);
         let userId = userInfo._id;
         sessionStorage.setItem('userId', userId);
-        let username = userInfo.username;
-        $('#loggedInUser').text(
-            "Welcome, " + username + "!");
+        let userName = userInfo.username;
+        sessionStorage.setItem('userName', userName);
     }
 
     function handleAjaxError(response) {
@@ -204,7 +203,7 @@ function prodavachnikApp() {
         adsTable.append($('<tr>').append(
             $('<td>').text(ad.title),
             $('<td>').text(ad.description),
-            $('<td>').text(ad._id),
+            $('<td>').text(ad.username),
             $('<td>').text(ad.date),
             $('<td>').text(ad.price),
             $('<td>').append(links)
@@ -216,7 +215,8 @@ function prodavachnikApp() {
             title: $('#formCreateAd input[name=title]').val(),
             description: $('#formCreateAd textarea[name=description]').val(),
             date: $('#formCreateAd input[name=datePublished]').val(),
-            price: $('#formCreateAd input[name=price]').val()
+            price: $('#formCreateAd input[name=price]').val(),
+            username: sessionStorage['userName']
         };
         $.ajax({
             method: "POST",
@@ -260,7 +260,7 @@ function prodavachnikApp() {
             $('#formEditAd input[name=id]').val(ad._id);
             $('#formEditAd input[name=title]').val(ad.title);
             $('#formEditAd textarea[name=description]').val(ad.description);
-            $('#formEditAd input[name=date]').val(ad.date);
+            $('#formEditAd input[name=datePublished]').val(ad.date);
             $('#formEditAd input[name=price]').val(ad.price);
             showView('viewEditAd');
         }
@@ -268,10 +268,11 @@ function prodavachnikApp() {
 
     function editAd() {
         let adData = {
-            title: $('#formCreateAd input[name=title]').val(),
-            description: $('#formCreateAd textarea[name=description]').val(),
-            date: $('#formCreateAd input[name=datePublished]').val(),
-            price: $('#formCreateAd input[name=price]').val()
+            title: $('#formEditAd input[name=title]').val(),
+            description: $('#formEditAd textarea[name=description]').val(),
+            date: $('#formEditAd input[name=datePublished]').val(),
+            price: $('#formEditAd input[name=price]').val(),
+            username: sessionStorage['userName']
         };
         $.ajax({
             method: "PUT",

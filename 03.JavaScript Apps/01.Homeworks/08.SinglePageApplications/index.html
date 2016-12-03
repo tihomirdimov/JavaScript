@@ -16,7 +16,6 @@
     <a href="#" id="linkListAds" class="menu-item">List Advertisements</a>
     <a href="#" id="linkCreateAd" class="menu-item">Create Advertisement</a>
     <a href="#" id="linkLogout" class="menu-item">Logout</a>
-    <span id="loggedInUser" class="menu-item"></span>
     <div></div>
 </header>
 
@@ -79,6 +78,7 @@
     <section id="viewCreateAd" class="viewCreateAd">
         <h1 class="titleForm">Create new Advertisement</h1>
         <form id="formCreateAd" class="form">
+            <div><input type="hidden" name="publisher" required/></div>
             <div>Title:</div>
             <div><input type="text" name="title" required/></div>
             <div>Description:</div>
@@ -92,7 +92,7 @@
     </section>
 
     <section id="viewEditAd" class="viewEditAd">
-        <h1 class="titleForm">Edit existing advertisement</h1>
+        <h1 class="titleForm">Edit existing Advertisement</h1>
         <form id="formEditAd" class="form">
             <div><input type="hidden" name="id" required/></div>
             <div><input type="hidden" name="publisher" required/></div>

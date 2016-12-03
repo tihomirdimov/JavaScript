@@ -251,10 +251,8 @@ function bookLibraryApp() {
         function loadBookForEditSuccess(book) {
             $('#formEditBook input[name=id]').val(book._id);
             $('#formEditBook input[name=title]').val(book.title);
-            $('#formEditBook input[name=author]')
-                .val(book.author);
-            $('#formEditBook textarea[name=descr]')
-                .val(book.description);
+            $('#formEditBook input[name=author]').val(book.author);
+            $('#formEditBook textarea[name=descr]').val(book.description);
             showView('viewEditBook');
         }
     }
