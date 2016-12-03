@@ -1,4 +1,4 @@
-function startApp() {
+function prodavachnikApp() {
     const kinveyBaseUrl = "https://baas.kinvey.com/";
     const kinveyAppKey = "kid_H1oc-Wqfe";
     const kinveyAppSecret = "a8148e8cd8d3446f9dc69154a4d0cc9e";

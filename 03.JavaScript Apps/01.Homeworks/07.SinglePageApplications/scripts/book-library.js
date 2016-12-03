@@ -1,5 +1,4 @@
-//work in progress
-function startApp() {
+function bookLibraryApp() {
     const kinveyBaseUrl = "https://baas.kinvey.com/";
     const kinveyAppKey = "kid_H1O_YiuMx";
     const kinveyAppSecret = "62618cbfee90497fa6aba07c8c2006de";
@@ -7,7 +6,7 @@ function startApp() {
         'Authorization': "Basic " +
         btoa(kinveyAppKey + ":" + kinveyAppSecret),
     };
-    sessionStorage.clear(); // Clear user auth data
+    sessionStorage.clear();
     showHideMenuLinks();
     showView('viewHome');
     $("#linkHome").click(showHomeView);
@@ -21,7 +20,6 @@ function startApp() {
     $("#buttonRegisterUser").click(registerUser);
     $("#buttonCreateBook").click(createBook);
     $("#buttonEditBook").click(editBook);
-    $("#buttonLoginUser").click(loginUser);
     $("#infoBox, #errorBox").click(function () {
         $(this).fadeOut();
     });
@@ -36,14 +34,12 @@ function startApp() {
     function showHideMenuLinks() {
         $("#linkHome").show();
         if (sessionStorage.getItem('authToken')) {
-            // We have logged in user
             $("#linkLogin").hide();
             $("#linkRegister").hide();
             $("#linkListBooks").show();
             $("#linkCreateBook").show();
             $("#linkLogout").show();
         } else {
-            // No logged in user
             $("#linkLogin").show();
             $("#linkRegister").show();
             $("#linkListBooks").hide();
@@ -53,7 +49,6 @@ function startApp() {
     }
 
     function showView(viewName) {
-        // Hide all views and show the selected view only
         $('main > section').hide();
         $('#' + viewName).show();
     }
@@ -176,9 +171,11 @@ function startApp() {
                 $('#books').text('No books in the library.');
             } else {
                 let booksTable = $('<table>')
-                    .append($('<tr>').append(
-                        '<th>Title</th><th>Author</th>',
-                        '<th>Description</th><th>Actions</th>'));
+                    .append($('<tr>')
+                        .append($('<th>').text('Title'))
+                        .append($('<th>').text('Author'))
+                        .append($('<th>').text('Description'))
+                        .append($('<th>').text('Actions')));
                 for (let book of books)
                     appendBookRow(book, booksTable);
                 $('#books').append(booksTable);
