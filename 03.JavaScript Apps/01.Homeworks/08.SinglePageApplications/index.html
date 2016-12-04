@@ -3,6 +3,10 @@
 <head>
     <title>Prodavachnik</title>
     <script src="scripts/jquery-3.1.1.min.js"></script>
+    <script src="scripts/ajax.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/util.js"></script>
+    <script src="scripts/view.js"></script>
     <script src="scripts/prodavachnik.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/prodavachnik.css"/>
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
@@ -87,6 +91,8 @@
             <div><input type="date" name="datePublished" required/></div>
             <div>Price:</div>
             <div><input type="number" step="0.01" name="price" required/></div>
+            <div>Image:</div>
+            <div><input type="text" name="image" required/></div>
             <div><input type="button" id="buttonCreateAd" value="Create"/></div>
         </form>
     </section>
@@ -104,9 +110,14 @@
             <div><input type="date" name="datePublished" required/></div>
             <div>Price:</div>
             <div><input type="number" step="0.01" name="price" required/></div>
+            <div>Image:</div>
+            <div><input type="text" name="image" required/></div>
             <div><input type="button" id="buttonEditAd" value="Edit"/></div>
         </form>
     </section>
+
+    <section id="viewDetailsAd" class="viewEditAd"></section>
+
     <script>
         prodavachnikApp();
     </script>
