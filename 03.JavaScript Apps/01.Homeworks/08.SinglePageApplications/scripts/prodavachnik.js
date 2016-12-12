@@ -12,7 +12,7 @@ function prodavachnikApp() {
     $("#buttonRegisterUser").click(registerUser);
     $("#buttonCreateAd").click(createAd);
     $("#buttonEditAd").click(editAd);
-    $("#infoBox, #errorBox").click(function () {
+    $("#errorBox").click(function () {
         $(this).fadeOut();
     });
 }

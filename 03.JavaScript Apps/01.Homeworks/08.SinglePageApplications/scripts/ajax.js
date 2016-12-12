@@ -43,8 +43,8 @@ function appendAdRow(ad, adsTable) {
             });
         let editLink = $('<a href="#">[Edit]</a>')
             .click(function () {
-                loadAdForEdit(ad)
-            });
+            loadAdForEdit(ad)
+        });
         links = [readMoreLink, ' ', deleteLink, ' ', editLink];
     }
     adsTable.append($('<tr>').append(

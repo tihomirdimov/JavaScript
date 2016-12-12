@@ -1,4 +1,3 @@
-
 $(document).on({
     ajaxStart: function () {
         $("#loadingBox").show()
