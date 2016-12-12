@@ -17,8 +17,8 @@ function startApp() {
     $("#linkMenuLogout").click(logoutUser);
     $('form').on('submit', function(event) {
         event.preventDefault();
-    })
-    $("#formSendMessage").submit(sendMessage);
+    });
     $('#formLogin').submit(loginUser);
     $('#formRegister').submit(registerUser);
+    $("#formSendMessage").submit(sendMessage);
 }

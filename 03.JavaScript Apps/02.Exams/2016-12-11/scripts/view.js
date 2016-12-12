@@ -49,3 +49,9 @@ function showRegisterView() {
     $('#formRegister').trigger('reset');
 
 }
+
+function showSendMessageView() {
+    showView('viewSendMessage');
+    $('#formSendMessage').trigger('reset');
+
+}

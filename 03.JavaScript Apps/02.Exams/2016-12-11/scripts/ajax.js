@@ -30,7 +30,7 @@ function appendMsgRow(msg, msgsTable) {
     msgsTable.append($('<tr>').append(
         $('<td>').text(formatSender(msg.sender_name, msg.sender_username)),
         $('<td>').text(msg.text),
-        $('<td>').text(formatDate(msg._kmd))
+        $('<td>').text(formatDate(msg._kmd.lmt))
     ));
 }
 
@@ -68,7 +68,7 @@ function appendSentMsgRow(msg, msgsTable) {
     msgsTable.append($('<tr>').append(
         $('<td>').text(msg.recipient_username),
         $('<td>').text(msg.text),
-        $('<td>').text(formatDate(msg._kmd)),
+        $('<td>').text(formatDate(msg._kmd.lmt)),
         $('<td>').append($('<button>').text('delete').click(function () {
             deleteMsg(msg)
         }))));
@@ -90,7 +90,7 @@ function deleteMsg(msg) {
 }
 
 function sendNewMessage() {
-    showView('viewSendMessage');
+    showSendMessageView();
     let users = $.ajax({
         method: "GET",
         url: kinveyBaseUrl + "user/" + kinveyAppKey,
@@ -98,14 +98,13 @@ function sendNewMessage() {
         success: loadUsersSuccess,
         error: handleAjaxError
     });
-
     function loadUsersSuccess(users) {
-        $('#msgRecipientUsername').empty()
-        for (let user in users) {
+        $('#msgRecipientUsername').empty();
+        for (let user of users) {
             $('#msgRecipientUsername')
                 .append($('<option>')
-                    .attr("value", user.name)
-                    .val(user.username + " (" + user.name + ")"));
+                    .attr("value", user.username)
+                    .html(user.name + " (" + user.username + ")"));
         }
     }
 }
@@ -114,7 +113,7 @@ function sendMessage() {
     let messageData = {
         sender_username: sessionStorage.getItem('userName'),
         sender_name: sessionStorage.getItem('name'),
-        recipient_username: $('#formSendMessage input[name=recipient]').val(),
+        recipient_username: $('#msgRecipientUsername option:selected', this).attr('value'),
         text: $('#formSendMessage input[name=text]').val(),
     };
     $.ajax({
