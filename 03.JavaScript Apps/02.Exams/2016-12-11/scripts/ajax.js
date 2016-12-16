@@ -98,6 +98,7 @@ function sendNewMessage() {
         success: loadUsersSuccess,
         error: handleAjaxError
     });
+
     function loadUsersSuccess(users) {
         $('#msgRecipientUsername').empty();
         for (let user of users) {
@@ -110,12 +111,19 @@ function sendNewMessage() {
 }
 
 function sendMessage() {
+    let sender = sessionStorage.getItem('name');
+    if (sender == "") {
+        let sender = null;
+    } else {
+        let sender = sessionStorage.getItem('name')
+    }
     let messageData = {
-        sender_username: sessionStorage.getItem('userName'),
-        sender_name: sessionStorage.getItem('name'),
-        recipient_username: $('#msgRecipientUsername option:selected', this).attr('value'),
-        text: $('#formSendMessage input[name=text]').val(),
-    };
+            sender_username: sessionStorage.getItem('userName'),
+            sender_name: sender,
+            recipient_username: $('#msgRecipientUsername option:selected', this).attr('value'),
+            text: $('#formSendMessage input[name=text]').val(),
+        }
+        ;
     $.ajax({
         method: "POST",
         url: kinveyBaseUrl + "appdata/" + kinveyAppKey + "/messages",
