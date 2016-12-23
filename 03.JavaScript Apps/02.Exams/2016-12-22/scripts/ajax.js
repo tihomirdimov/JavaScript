@@ -38,13 +38,9 @@ function appendShopProductRow(product, productsTable) {
 }
 
 function purchaseProduct(product) {
-    $.ajax({
-        method: "GET",
-        url: kinveyBaseUrl + "user/" + kinveyAppKey + '/' + sessionStorage.getItem('userId'),
-        headers: getKinveyUserAuthHeaders(),
-        success: returnCartToPurchaseProductSuccess,
-        error: handleAjaxError
-    });
+    getCart().then(user => {
+        returnCartToPurchaseProductSuccess(user)
+    }).catch(handleAjaxError);
     function returnCartToPurchaseProductSuccess(user) {
         let cart = user.cart;
         if (cart !== undefined && cart.hasOwnProperty(product)) {
@@ -84,13 +80,9 @@ function purchaseProduct(product) {
 function viewCart() {
     $('#cartProducts').empty();
     showView('viewCart');
-    $.ajax({
-        method: "GET",
-        url: kinveyBaseUrl + "user/" + kinveyAppKey + '/' + sessionStorage.getItem('userId'),
-        headers: getKinveyUserAuthHeaders(),
-        success: returnCartViewSuccess,
-        error: handleAjaxError
-    });
+    getCart().then(user => {
+        returnCartViewSuccess(user)
+    }).catch(handleAjaxError);
     function returnCartViewSuccess(user) {
         let cart = user.cart;
         let productTable = $('<table>')
@@ -123,19 +115,23 @@ function appendCartProductRow(id, product, productTable) {
 }
 
 function discardProduct(product) {
-    $.ajax({
-        method: "GET",
-        url: kinveyBaseUrl + "user/" + kinveyAppKey + '/' + sessionStorage.getItem('userId'),
-        headers: getKinveyUserAuthHeaders(),
-        success: returnCartToDiscardProductSuccess,
-        error: handleAjaxError
-    });
+    getCart().then(user => {
+        returnCartToDiscardProductSuccess(user)
+    }).catch(handleAjaxError);
     function returnCartToDiscardProductSuccess(user) {
         let cart = user.cart;
         delete cart[product];
         let message = "Product discarded.";
         updateCart(cart, message);
     }
+}
+
+function getCart() {
+    return $.ajax({
+        method: "GET",
+        url: kinveyBaseUrl + "user/" + kinveyAppKey + '/' + sessionStorage.getItem('userId'),
+        headers: getKinveyUserAuthHeaders()
+    })
 }
 
 function updateCart(cart, message) {
