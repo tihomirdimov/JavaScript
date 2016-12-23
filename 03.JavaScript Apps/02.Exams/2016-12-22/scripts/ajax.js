@@ -53,7 +53,7 @@ function purchaseProduct(product) {
             let quantity = cart[product].quantity;
             quantity++;
             cart[product].quantity = quantity;
-            updateCart(cart);
+            updateCartAfterPurchase(cart);
         } else {
             $.ajax({
                 method: "GET",
@@ -75,13 +75,13 @@ function purchaseProduct(product) {
                     cart = {};
                 }
                 cart[product] = toAdd;
-                updateCart(cart);
+                updateCartAfterPurchase(cart);
             }
         }
     }
 }
 
-function updateCart(cart) {
+function updateCartAfterPurchase(cart) {
     let cartToUpdate = {
         username: sessionStorage.getItem('userName'),
         name: sessionStorage.getItem('name'),
@@ -124,24 +124,56 @@ function viewCart() {
             .append($('<tbody>'));
         if (user.cart !== "") {
             for (let product in user.cart) {
-                appendCartProductRow(user.cart[product], productTable);
+                appendCartProductRow(product, user.cart[product], productTable);
             }
         }
         $('#cartProducts').append(productTable);
     }
 
-    function appendCartProductRow(product, productTable) {
+    function appendCartProductRow(id, product, productTable) {
         productTable.find('tbody').append($('<tr>').append(
             $('<td>').text(product.product.name),
             $('<td>').text(product.product.description),
             $('<td>').text(product.quantity),
             $('<td>').text((product.quantity * parseFloat(product.product.price)).toFixed(2)),
             $('<td>').append($('<button>').text('Discard').click(function () {
-                discardProduct()
+                discardProduct(id)
             }))));
     }
 }
 
-function discardProduct() {
+function discardProduct(product) {
+    $.ajax({
+        method: "GET",
+        url: kinveyBaseUrl + "user/" + kinveyAppKey + '/' + sessionStorage.getItem('userId'),
+        headers: getKinveyUserAuthHeaders(),
+        success: loadCartToDiscardProductsFromSuccess,
+        error: handleAjaxError
+    });
 
+    function loadCartToDiscardProductsFromSuccess(user) {
+        let cart = user.cart;
+        delete cart[product];
+        updateCartAfterDiscard(cart);
+    }
+}
+
+function updateCartAfterDiscard(cart) {
+    let cartToUpdate = {
+        username: sessionStorage.getItem('userName'),
+        name: sessionStorage.getItem('name'),
+        cart: cart
+    }
+    $.ajax({
+        method: "PUT",
+        url: kinveyBaseUrl + "user/" + kinveyAppKey + '/' + sessionStorage.getItem('userId'),
+        headers: getKinveyUserAuthHeaders(),
+        data: cartToUpdate,
+        success: addedToCartSuccess,
+        error: handleAjaxError
+    });
+    function addedToCartSuccess() {
+        viewCart();
+        showInfo('Product discarded.');
+    }
 }
