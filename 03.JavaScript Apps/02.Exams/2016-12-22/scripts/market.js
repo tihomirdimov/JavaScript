@@ -1,5 +1,3 @@
-//problems with escaping default actions with the submit buttons
-//problems with formatting date
 function marketApp() {
     sessionStorage.clear();
     showHideMenuLinks();

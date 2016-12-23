@@ -46,5 +46,4 @@ function showLoginView() {
 function showRegisterView() {
     showView('viewRegister');
     $('#formRegister').trigger('reset');
-
 }

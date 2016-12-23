@@ -6,11 +6,10 @@ function viewShop() {
         method: "GET",
         url: kinveyBaseUrl + "appdata/" + kinveyAppKey + '/products',
         headers: getKinveyUserAuthHeaders(),
-        success: loadShopSuccess,
+        success: returnShopViewSuccess,
         error: handleAjaxError
     });
-
-    function loadShopSuccess(products) {
+    function returnShopViewSuccess(products) {
         let productTable = $('<table>')
             .append($('<thead>')
                 .append($('<tr>').append(
@@ -26,16 +25,16 @@ function viewShop() {
         }
         $('#shopProducts').append(productTable);
     }
+}
 
-    function appendShopProductRow(product, productsTable) {
-        productsTable.find('tbody').append($('<tr>').append(
-            $('<td>').text(product.name),
-            $('<td>').text(product.description),
-            $('<td>').text(product.price.toFixed(2)),
-            $('<td>').append($('<button>').text('Purchase').click(function () {
-                purchaseProduct(product._id)
-            }))));
-    }
+function appendShopProductRow(product, productsTable) {
+    productsTable.find('tbody').append($('<tr>').append(
+        $('<td>').text(product.name),
+        $('<td>').text(product.description),
+        $('<td>').text(product.price.toFixed(2)),
+        $('<td>').append($('<button>').text('Purchase').click(function () {
+            purchaseProduct(product._id)
+        }))));
 }
 
 function purchaseProduct(product) {
@@ -43,17 +42,17 @@ function purchaseProduct(product) {
         method: "GET",
         url: kinveyBaseUrl + "user/" + kinveyAppKey + '/' + sessionStorage.getItem('userId'),
         headers: getKinveyUserAuthHeaders(),
-        success: loadCartToUpdateSuccess,
+        success: returnCartToPurchaseProductSuccess,
         error: handleAjaxError
     });
-
-    function loadCartToUpdateSuccess(user) {
+    function returnCartToPurchaseProductSuccess(user) {
         let cart = user.cart;
         if (cart !== undefined && cart.hasOwnProperty(product)) {
             let quantity = cart[product].quantity;
             quantity++;
             cart[product].quantity = quantity;
-            updateCartAfterPurchase(cart);
+            let message = "Product purchased.";
+            updateCart(cart, message);
         } else {
             $.ajax({
                 method: "GET",
@@ -75,29 +74,10 @@ function purchaseProduct(product) {
                     cart = {};
                 }
                 cart[product] = toAdd;
-                updateCartAfterPurchase(cart);
+                let message = "Product purchased.";
+                updateCart(cart, message);
             }
         }
-    }
-}
-
-function updateCartAfterPurchase(cart) {
-    let cartToUpdate = {
-        username: sessionStorage.getItem('userName'),
-        name: sessionStorage.getItem('name'),
-        cart: cart
-    }
-    $.ajax({
-        method: "PUT",
-        url: kinveyBaseUrl + "user/" + kinveyAppKey + '/' + sessionStorage.getItem('userId'),
-        headers: getKinveyUserAuthHeaders(),
-        data: cartToUpdate,
-        success: addedToCartSuccess,
-        error: handleAjaxError
-    });
-    function addedToCartSuccess() {
-        viewCart();
-        showInfo('Product purchased.');
     }
 }
 
@@ -108,11 +88,11 @@ function viewCart() {
         method: "GET",
         url: kinveyBaseUrl + "user/" + kinveyAppKey + '/' + sessionStorage.getItem('userId'),
         headers: getKinveyUserAuthHeaders(),
-        success: loadCartSuccess,
+        success: returnCartViewSuccess,
         error: handleAjaxError
     });
-
-    function loadCartSuccess(user) {
+    function returnCartViewSuccess(user) {
+        let cart = user.cart;
         let productTable = $('<table>')
             .append($('<thead>')
                 .append($('<tr>').append(
@@ -122,24 +102,24 @@ function viewCart() {
                     $('<th>').text("Total Price"),
                     $('<th>').text("Actions"))))
             .append($('<tbody>'));
-        if (user.cart !== "") {
-            for (let product in user.cart) {
-                appendCartProductRow(product, user.cart[product], productTable);
+        if (cart !== "") {
+            for (let product in cart) {
+                appendCartProductRow(product, cart[product], productTable);
             }
         }
         $('#cartProducts').append(productTable);
     }
+}
 
-    function appendCartProductRow(id, product, productTable) {
-        productTable.find('tbody').append($('<tr>').append(
-            $('<td>').text(product.product.name),
-            $('<td>').text(product.product.description),
-            $('<td>').text(product.quantity),
-            $('<td>').text((product.quantity * parseFloat(product.product.price)).toFixed(2)),
-            $('<td>').append($('<button>').text('Discard').click(function () {
-                discardProduct(id)
-            }))));
-    }
+function appendCartProductRow(id, product, productTable) {
+    productTable.find('tbody').append($('<tr>').append(
+        $('<td>').text(product.product.name),
+        $('<td>').text(product.product.description),
+        $('<td>').text(product.quantity),
+        $('<td>').text((product.quantity * parseFloat(product.product.price)).toFixed(2)),
+        $('<td>').append($('<button>').text('Discard').click(function () {
+            discardProduct(id)
+        }))));
 }
 
 function discardProduct(product) {
@@ -147,18 +127,18 @@ function discardProduct(product) {
         method: "GET",
         url: kinveyBaseUrl + "user/" + kinveyAppKey + '/' + sessionStorage.getItem('userId'),
         headers: getKinveyUserAuthHeaders(),
-        success: loadCartToDiscardProductsFromSuccess,
+        success: returnCartToDiscardProductSuccess,
         error: handleAjaxError
     });
-
-    function loadCartToDiscardProductsFromSuccess(user) {
+    function returnCartToDiscardProductSuccess(user) {
         let cart = user.cart;
         delete cart[product];
-        updateCartAfterDiscard(cart);
+        let message = "Product discarded.";
+        updateCart(cart, message);
     }
 }
 
-function updateCartAfterDiscard(cart) {
+function updateCart(cart, message) {
     let cartToUpdate = {
         username: sessionStorage.getItem('userName'),
         name: sessionStorage.getItem('name'),
@@ -169,11 +149,11 @@ function updateCartAfterDiscard(cart) {
         url: kinveyBaseUrl + "user/" + kinveyAppKey + '/' + sessionStorage.getItem('userId'),
         headers: getKinveyUserAuthHeaders(),
         data: cartToUpdate,
-        success: addedToCartSuccess,
+        success: updatedCartSuccess,
         error: handleAjaxError
     });
-    function addedToCartSuccess() {
+    function updatedCartSuccess() {
         viewCart();
-        showInfo('Product discarded.');
+        showInfo(message);
     }
 }
