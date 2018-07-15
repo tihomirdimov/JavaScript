@@ -1,0 +1,28 @@
+1. open the express temaplte in VS code
+2. isntall the dependances: npm i
+3. change the package json - name, description, author, etc
+4. start the server with: node index.js and check if it working
+5. Remove content in /views except /views/users. mind the JS functions that call submit on logout
+6. In express.js - app.engine('.hbs', handlebars({    defaultLayout: 'main',    extname: '.hbs'  })) +  app.set('view engine', '.hbs')
+7. change the secret
+8. remove the "about" route and about from the home-controller
+9. change db path db: 'mongodb://localhost:27017/name-of-the-app',\
+10. change the port to 3000
+11. rename the public folder to static and change it the express.js
+12. copy the static folder content from the skeleton to the app
+13. create layouts folder in views
+14. add main.hbs to layouts
+15. copy the index file to the main.hbs (remove the content in the main tag)
+16. add home folder + index.hbs in the home folder + copy the content from the index in the main tag
+17. add route app.get('/index.html', controllers.home.index) - just in case the "/" is not working
+18. remove the "static" from the stylesheet tag in the main layout
+19. create "partials" folder in views
+20. put in "partials" the html code of the object (e.g. the doner)
+21. replace the items in the index with the partial views ( placeholder: {{> doner }} )
+22. remove the static from the picture in the partial view of the doner
+23. create the first model - product.js in server/data folder - 1. require mongoose 2.set the schema
+24. create controller for the model in the controllers folder (e.g. product-controller.js) and add it in the index
+25. create routes for the create model - both get and post !!!!! MIND THE ROUTES GIVEN IN THE HTML AND TRY TO USE THE SAME ROUTING
+26. !!! add names for inputs when missing. otherwise the inputs won't be saved
+27. register the model in the database.js file
+28. create api folder + move the verification logic for respective models there

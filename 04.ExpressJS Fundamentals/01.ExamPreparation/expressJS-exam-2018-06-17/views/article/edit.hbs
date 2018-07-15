@@ -1,0 +1,19 @@
+<section>
+    <h2>Edit article
+        {{#if currentUser}}
+        <div class="controls">
+            <a href="#">Lock article</a>
+            <a href="#">Unlock article</a>
+        </div>
+        {{/if}}
+    </h2>
+    <div class="spacer">
+        <form name="editArticle" action="/article/edit/{{article._id}}" method="POST">
+            <label>Article title</label>
+            <h3>{{article.title}}</h3>
+            <label>Content</label>
+            <textarea name="content">{{ article.latestContent }}</textarea>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</section>

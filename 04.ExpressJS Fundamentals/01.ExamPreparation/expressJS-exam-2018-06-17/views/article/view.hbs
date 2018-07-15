@@ -1,0 +1,13 @@
+<div class="spacer">
+    {{#if article}}
+    <h2>{{article.title}}
+        <div class="controls">
+            <a href="/article/edit/{{article._id}}">[edit]</a>
+            <a href="/article/history/{{article._id}}">[history]</a>
+        </div>
+    </h2>
+    {{article.latestContent}}
+    {{else}}
+    <p>A problem occured when loading this article</p>
+    {{/if}}
+</div>

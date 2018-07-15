@@ -1,0 +1,12 @@
+<section>
+    <h2>All articles</h2>
+    <div class="spacer">
+        {{#if articles}}
+        <ul>
+            {{#each articles}} {{> article}} {{/each}}
+        </ul>
+        {{else}}
+        <p>No articles</p>
+        {{/if}}
+    </div>
+</section>
