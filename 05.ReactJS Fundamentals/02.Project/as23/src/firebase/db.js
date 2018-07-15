@@ -1,6 +1,6 @@
 import { db } from './firebase';
 
-// Users API
+// Users API - create and get users
 
 export const doCreateUser = (id, username, email) =>
   db.ref(`users/${id}`).set({
@@ -12,7 +12,7 @@ export const doCreateUser = (id, username, email) =>
 export const onceGetUsers = () =>
   db.ref('users').once('value');
 
-// Players API
+// Players API - craete, get and delete players
 
 export const doCreatePlayer = (firstName, lastName) =>
   db.ref(`players`).push({

@@ -6,6 +6,8 @@ import { withRouter } from 'react-router-dom';
 import { firebase } from '../firebase';
 import * as routes from '../constants/routes';
 
+// Higher order component to authorize users (if user is not authorized is forwarded to Sign-in)
+
 const withAuthorization = (authCondition) => (Component) => {
   class WithAuthorization extends React.Component {
     componentDidMount() {

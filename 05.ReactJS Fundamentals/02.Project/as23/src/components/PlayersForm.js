@@ -41,7 +41,7 @@ export default class PlayersForm extends Component {
     return (
       <div>
         <h5>Добави играч</h5>
-        <form onSubmit={this.handleSubmit} className="TaskInput form-inline form-group">
+        <form onSubmit={this.handleSubmit} className="PlayerInput form-inline form-group">
           <label className="mr-sm-2" htmlFor="firstName">Име</label>
           <input
             className="form-control form-control-sm mr-sm-2"
@@ -62,6 +62,8 @@ export default class PlayersForm extends Component {
             placeholder="Фамилията на играча"
             required
           />
+
+          
           <button className="btn btn-sm" type="submit">
             Добави Играч
         </button>

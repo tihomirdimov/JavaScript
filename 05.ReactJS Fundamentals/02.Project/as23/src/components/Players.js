@@ -17,7 +17,6 @@ class PlayersPage extends Component {
         );
     }
 }
-
 const authCondition = (authUser) => !!authUser;
 
 export default compose(

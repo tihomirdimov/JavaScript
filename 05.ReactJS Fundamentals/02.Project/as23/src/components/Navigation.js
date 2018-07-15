@@ -21,7 +21,7 @@ const NavigationAuth = () =>
     <ul className="navbar-nav mr-auto">
       <li className="nav-item"><Link to={routes.HOME} className="nav-link">Начало</Link></li>
       <li className="nav-item"><Link to={routes.PLAYERS} className="nav-link">Играчи</Link></li>
-      {/* <li className="nav-item"><Link to={routes.GAMES} className="nav-link">Мачове</Link></li> */}
+      <li className="nav-item"><Link to={routes.GAMES} className="nav-link">Мачове</Link></li>
     </ul>
     <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
       <img className="navbar-brand p-0" src={logo} alt="logo" style={{ width: 35 }} />

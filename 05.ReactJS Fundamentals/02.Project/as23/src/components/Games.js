@@ -9,7 +9,7 @@ class GamesPage extends Component {
   render() {
     return (
       <div>
-        <h1>Games</h1>
+        <h1>Срещи</h1>
         <GamesForm />
         <GamesList />
       </div>
@@ -17,7 +17,8 @@ class GamesPage extends Component {
   }
 }
 
-const authCondition = (authUser) => !!authUser && authUser.roles.isAdmin === 'true';
+const authCondition = (authUser) => !!authUser;
+// && authUser.roles.isAdmin === 'true'
 
 export default compose(
   withAuthorization(authCondition)

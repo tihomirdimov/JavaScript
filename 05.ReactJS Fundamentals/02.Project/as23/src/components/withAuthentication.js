@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { firebase } from '../firebase';
-import { db } from '../firebase';
+
+// Higher order component used to check if the current user is authenticated.
+// Future implementation will be added to check if the user is admin to be used 
+// in the Administration section as well as to allow only users to add games and players
 
 const withAuthentication = (Component) => {
     class WithAuthentication extends React.Component {

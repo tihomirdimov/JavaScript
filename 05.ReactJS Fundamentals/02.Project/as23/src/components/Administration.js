@@ -9,6 +9,8 @@ class AdministrationPage extends Component {
   componentDidMount() {
     const { onSetUsers } = this.props;
 
+    // get all available users in the system
+
     db.onceGetUsers().then(snapshot =>
       onSetUsers(snapshot.val())
     );
@@ -27,6 +29,8 @@ class AdministrationPage extends Component {
   }
 }
 
+// list with all available users in the system. could be created as new component
+
 const UserList = ({ users }) =>
   <div style={{ width: '50%' }}>
     <table className="table table-sm">
@@ -42,6 +46,7 @@ const UserList = ({ users }) =>
           <tr key={key}>
             <td>{users[key].username} </td>
             <td>{users[key].email}</td>
+            {/* // select or on/off  control to be implemented allowing the admin to set otther users as admins/not admins */}
             <td>{users[key].roles.isAdmin.toString()}</td>
           </tr>)}
       </tbody>
@@ -55,6 +60,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onSetUsers: (users) => dispatch({ type: 'USERS_SET', users })
 });
+
+// Below logic to be extended with '&& authUser.isAdmin == true in order
 
 const authCondition = (authUser) => !!authUser;
 

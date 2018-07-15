@@ -34,6 +34,7 @@ class PlayersList extends Component {
               <tr>
                 <th scope="col">Име</th>
                 <th scope="col"></th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
