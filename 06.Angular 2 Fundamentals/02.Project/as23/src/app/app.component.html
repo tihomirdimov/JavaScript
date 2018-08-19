@@ -1,0 +1,46 @@
+<div>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top shadow">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="home" routerLinkActive="active" role="button">Начало</a>
+      </li>
+      <li *ngIf="authService.isUserLoggedIn" class="nav-item">
+        <a class="nav-link " routerLink="players-section" routerLinkActive="active" role="button">Играчи</a>
+      </li>
+      <li *ngIf="authService.isUserLoggedIn" class="nav-item">
+        <a class="nav-link " routerLink="games" routerLinkActive="active" role="button">Мачове</a>
+      </li>
+    </ul>
+    <div style="position: absolute; margin-left: 50%; transform: translateX(-50%)">
+      <img class="navbar-brand p-0" src="../assets/logo.png" lt="logo" style="width: 35px;" />
+      <span class="navbar-text text-danger p-0 ">{{title}}</span>
+    </div>
+    <ul class="navbar-nav ml-auto align-items-center">
+      <div *ngIf="authService.user$ | async as user">
+        <li *ngIf="authService.isUserLoggedIn && user.isAdmin" class="nav-item">
+          <a class="nav-link" routerLink="administration" routerLinkActive="active" role="button">Администрация</a>
+        </li>
+      </div>
+      <li *ngIf="authService.isUserLoggedIn" class="nav-item">
+        <a class="nav-link" routerLink="settings" routerLinkActive="active" role="button">Настройки</a>
+      </li>
+      <li *ngIf="authService.isUserLoggedIn" class="nav-item">
+        <button class="btn btn-sm btn-outline-danger ml-3" (click)="logOut()">Изход</button>
+      </li>
+      <li *ngIf="!authService.isUserLoggedIn" class="nav-item">
+        <a class="nav-link" routerLink="register" routerLinkActive="active" role="button">Регистрация</a>
+      </li>
+      <li *ngIf="!authService.isUserLoggedIn" class="nav-item">
+        <a class="nav-link" routerLink="login" routerLinkActive="active" role="button">Вход</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<div style="margin-top: 55px; padding: 10px">
+  <router-outlet></router-outlet>
+</div>
+<div>
+  <footer class="fixed-bottom bg-dark text-white">
+    <p class="font-weight-light font-italic text-center m-1 p-0">- Чрезъ спорта за Родината -</p>
+  </footer>
+</div>

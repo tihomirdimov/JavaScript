@@ -1,0 +1,7 @@
+<h1>Players</h1>
+<div *ngFor="let player of players" style="width: 300px;">
+  <player-details [player]='player'></player-details>
+</div>
+<div style="margin-top:20px;">
+  <button type="button" class="button btn-danger" (click)='deletePlayers()'>Delete All</button>
+</div>
