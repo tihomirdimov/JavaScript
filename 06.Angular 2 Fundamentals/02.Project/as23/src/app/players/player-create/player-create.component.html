@@ -1,14 +1,16 @@
 <h3>Create Player</h3>
-<div [hidden]="submitted" style="width: 300px;">
-  <form (ngSubmit)="onSubmit()">
+<div [hidden]="submitted">
+  <form class="form-inline" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input type="text" class="form-control" id="firstName" required [(ngModel)]="player.firstName" name="firstName">
+      <label for="firstName" class="mr-sm-2">First Name</label>
+      <input type="text" class="form-control input-sm mr-sm-2" 
+      id="firstName" required [(ngModel)]="player.firstName" name="firstName">
     </div>
 
     <div class="form-group">
-      <label for="lastName">Last Name</label>
-      <input type="text" class="form-control" id="lastName" required [(ngModel)]="player.lastName" name="lastName">
+      <label for="lastName" class="mr-sm-2" >Last Name</label>
+      <input type="text" class="form-control input-sm mr-sm-2" 
+      id="lastName" required [(ngModel)]="player.lastName" name="lastName">
     </div>
 
     <button type="submit" class="btn btn-success">Submit</button>

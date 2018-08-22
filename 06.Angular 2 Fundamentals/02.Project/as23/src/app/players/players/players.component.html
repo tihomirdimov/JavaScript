@@ -1,7 +1,18 @@
 <h1>Players</h1>
-<div *ngFor="let player of players" style="width: 300px;">
-  <player-details [player]='player'></player-details>
-</div>
-<div style="margin-top:20px;">
-  <button type="button" class="button btn-danger" (click)='deletePlayers()'>Delete All</button>
+<table class="table-striped table-borderless">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="p-3" player-details [player]='player' *ngFor="let player of players"></tr>
+  </tbody>
+</table>
+
+<!-- Add admin functionality -->
+
+<div class="mt-2 mb-5">
+  <button class="btn btn-sm btn-danger" (click)='deletePlayers()'>Delete All</button>
 </div>

@@ -1,19 +1,9 @@
-<div *ngIf="player">
-  <div>
-    <label>First Name: </label> {{player.firstName}}
-  </div>
-  <div>
-    <label>Last Name: </label> {{player.lastName}}
-  </div>
-  <div>
-    <label>Active: </label> {{player.active}}
-  </div>
- 
-  <span class="button is-small btn-primary" *ngIf='player.active' (click)='updateActive(false)'>Inactive</span>
- 
-  <span class="button is-small btn-primary" *ngIf='!player.active' (click)='updateActive(true)'>Active</span>
- 
-  <span class="button is-small btn-danger" (click)='deletePlayer()'>Delete</span>
- 
-  <hr/>
-</div>
+<td class="p-2" *ngIf="player">{{player.firstName}} {{player.lastName}}</td>
+<td class="p-2" >
+  <button class="btn btn-sm btn-outline-danger mr-3"
+  style="width: 100px" *ngIf='player.active' (click)='updateActive(false)'>Деактивирай</button>
+  <button class="btn btn-sm btn-outline-success mr-3"
+  style="width: 100px"  *ngIf='!player.active' (click)='updateActive(true)'>Активирай</button>
+  <button class="btn btn-sm btn-outline-danger mr-3"
+  style="width: 100px"  (click)='deletePlayer()'>Delete</button>
+</td>
