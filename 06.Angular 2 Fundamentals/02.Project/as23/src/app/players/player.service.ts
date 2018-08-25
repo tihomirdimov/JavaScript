@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Player } from './model/player';
+import { Player } from './player-model/player';
  
 @Injectable({
   providedIn: 'root'

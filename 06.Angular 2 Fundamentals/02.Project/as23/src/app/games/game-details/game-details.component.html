@@ -1,0 +1,35 @@
+<ng-container *ngIf='!isEditing'>
+  <td class="p-2" *ngIf="game">{{game.rival}}</td>
+  <td class="p-2" *ngIf="game">{{game.date}}</td>
+  <td class="p-2" *ngIf="game">{{game.isAway?'Да':'Не'}}</td>
+  <td class="p-2" *ngIf="game">{{game.result}}</td>
+  <td class="p-2">
+    <button class="btn btn-sm btn-outline-danger mr-3" style="width: 100px" *ngIf='!isEditing' (click)='enableEditing()'>Редактирай</button>
+    <button class="btn btn-sm btn-outline-danger mr-3" style="width: 100px" (click)='deleteGame()'>Изтрий</button>
+  </td>
+</ng-container>
+
+<ng-container *ngIf='isEditing'>
+  <td colspan="5">
+    <form class="form-inline" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input type="text" class="form-control form-control-sm mr-sm-2" id="rival" required [(ngModel)]="game.rival" name="rival">
+      </div>
+
+      <div class="form-group">
+        <input type="date" class="form-control form-control-sm mr-sm-2" id="date" required [(ngModel)]="game.date" name="date">
+      </div>
+
+      <div class="form-group">
+        <input type="checkbox" class="form-control form-control-sm mr-sm-2" id="isAway" required [(ngModel)]="game.isAway" name="isAway">
+      </div>
+
+      <div class="form-group">
+        <input type="input" class="form-control form-control-sm mr-sm-2" id="result" required [(ngModel)]="game.result" name="result">
+      </div>
+
+      <button type="submit" class="btn btn-sm btn-outline-success mr-3">Запази</button>
+      <button class="btn btn-sm btn-outline-danger mr-3" style="width: 100px" (click)='disableEditing()'>Откажи</button>
+    </form>
+  </td>
+</ng-container>

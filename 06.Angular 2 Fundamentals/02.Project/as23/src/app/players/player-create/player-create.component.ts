@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Player } from '../model/player';
+import { Player } from '../player-model/player';
 import { PlayerService } from '../player.service';
  
 @Component({
@@ -10,7 +10,6 @@ import { PlayerService } from '../player.service';
 export class PlayerCreateComponent implements OnInit {
  
   player: Player = new Player();
-  submitted = false;
  
   constructor(private playerService: PlayerService) { }
  
@@ -18,7 +17,6 @@ export class PlayerCreateComponent implements OnInit {
   }
  
   newPlayer(): void {
-    this.submitted = false;
     this.player = new Player();
   }
  
@@ -28,7 +26,6 @@ export class PlayerCreateComponent implements OnInit {
   }
  
   onSubmit() {
-    this.submitted = true;
     this.save();
   }
 }

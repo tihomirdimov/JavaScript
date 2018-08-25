@@ -1,0 +1,6 @@
+<td class="p-2" *ngIf="user">{{user.firstName}} {{user.lastName}}</td>
+<td class="p-2" *ngIf="user">{{user.email}}</td>
+<td class="p-2">
+  <button class="btn btn-sm btn-outline-danger mr-3" style="width: 100px" *ngIf='user.isAdmin' (click)='toggleAdmin(false)'>Деактивирай</button>
+  <button class="btn btn-sm btn-outline-success mr-3" style="width: 100px" *ngIf='!user.isAdmin' (click)='toggleAdmin(true)'>Активирай</button>
+</td>

@@ -1,23 +1,25 @@
-<h3>Create Player</h3>
-<div [hidden]="submitted">
-  <form class="form-inline" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="firstName" class="mr-sm-2">First Name</label>
-      <input type="text" class="form-control input-sm mr-sm-2" 
-      id="firstName" required [(ngModel)]="player.firstName" name="firstName">
-    </div>
+<h3>Създай Играч</h3>
 
-    <div class="form-group">
-      <label for="lastName" class="mr-sm-2" >Last Name</label>
-      <input type="text" class="form-control input-sm mr-sm-2" 
-      id="lastName" required [(ngModel)]="player.lastName" name="lastName">
-    </div>
+<form class="form-inline" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="firstName" class="mr-sm-2">Име</label>
+    <input type="text" class="form-control form-control-sm mr-sm-2" id="firstName" required [(ngModel)]="player.firstName" name="firstName">
+  </div>
 
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
-</div>
+  <div class="form-group">
+    <label for="lastName" class="mr-sm-2">Фамилия</label>
+    <input type="text" class=" form-control form-control-sm mr-sm-2" id="lastName" required [(ngModel)]="player.lastName" name="lastName">
+  </div>
 
-<div [hidden]="!submitted">
-  <h4>You submitted successfully!</h4>
-  <button class="btn btn-success" (click)="newPlayer()">Add</button>
-</div>
+  <div class="form-group">
+    <label for="lastName" class="mr-sm-2">Пост</label>
+    <select class="form-control form-control-sm mr-sm-2" id="position" [(ngModel)]="player.position" name="position">
+      <option value="Вратар">Вратар</option>
+      <option value="Защитник">Защитник</option>
+      <option value="Халф">Халф</option>
+      <option value="Нападател">Нападател</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-sm btn-success">Submit</button>
+</form>

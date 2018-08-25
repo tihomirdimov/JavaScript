@@ -1,0 +1,25 @@
+<h3>Добави Среща</h3>
+
+<form class="form-inline" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="rival" class="mr-sm-2">Съперник</label>
+    <input type="text" class="form-control form-control-sm mr-sm-2" id="rival" required [(ngModel)]="game.rival" name="rival">
+  </div>
+
+  <div class="form-group">
+    <label for="date" class="mr-sm-2">Дата</label>
+    <input type="date" class="form-control form-control-sm mr-sm-2" id="date" required [(ngModel)]="game.date" name="date">
+  </div>
+
+  <div class="form-group">
+    <label for="isAway" class="mr-sm-2">Гостуване</label>
+    <input type="checkbox" class="form-control form-control-sm mr-sm-2" id="isAway" required [(ngModel)]="game.isAway" name="isAway">
+  </div>
+
+  <div class="form-group">
+    <label for="result" class="mr-sm-2">Резултат</label>
+    <input type="input" class="form-control form-control-sm mr-sm-2" id="result" required [(ngModel)]="game.result" name="result">
+  </div>
+
+  <button type="submit" class="btn btn-sm btn-success">Submit</button>
+</form>

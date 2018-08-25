@@ -10,11 +10,14 @@ import { map } from 'rxjs/operators'
 
 export class AdministrationGuard implements CanActivate {
 
-  constructor(private authService: AuthService, public router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
-  canActivate(next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.authService.user$.pipe(
-      map(user => user.isAdmin))
+      map(user => {
+        if (user.isAdmin) {
+          return true;
+        }
+      }))
   }
 }

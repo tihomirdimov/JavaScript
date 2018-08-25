@@ -1,3 +1,21 @@
-<p>
-  games works!
-</p>
+<h1>Срещи</h1>
+<table class="table-striped table-borderless">
+  <thead>
+    <tr>
+      <th>Противник</th>
+      <th>Дата</th>
+      <th>Гостуване</th>
+      <th>Резултат</th>
+      <th>Действие</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="p-3" game-details [game]='game' *ngFor="let game of games"></tr>
+  </tbody>
+</table>
+
+<!-- Add admin functionality -->
+
+<div class="mt-2 mb-5">
+  <button class="btn btn-sm btn-danger" (click)='deleteGames()'>Delete All</button>
+</div>

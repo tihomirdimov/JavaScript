@@ -7,12 +7,11 @@ import { RegisterComponent } from '../auth/register/register.component';
 
 import { HomeComponent } from '../administration/home/home.component';
 import { AdministrationComponent } from '../administration/administration/administration.component';
-import { SettingsComponent } from '../administration/settings/settings.component';
-
-import { GamesComponent } from '../games/games/games.component';
+import { SettingsComponent } from '../administration/settings/settings.component'
 
 import { AdministrationGuard } from '../administration/administration.guard';
 import { PlayersSectionComponent } from '../players/players-section/players-section.component';
+import { GamesSectionComponent } from '../games/games-section/games-section.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,7 +21,7 @@ const routes: Routes = [
   { path: 'administration', component: AdministrationComponent, canActivate: [AdministrationGuard] },
   { path: 'settings', component: SettingsComponent },
   { path: 'players-section', component: PlayersSectionComponent },
-  { path: 'games', component: GamesComponent },
+  { path: 'games-section', component: GamesSectionComponent },
 ];
 
 @NgModule({

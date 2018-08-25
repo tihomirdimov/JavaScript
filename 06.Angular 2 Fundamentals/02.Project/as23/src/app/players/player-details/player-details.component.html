@@ -1,9 +1,35 @@
-<td class="p-2" *ngIf="player">{{player.firstName}} {{player.lastName}}</td>
-<td class="p-2" >
-  <button class="btn btn-sm btn-outline-danger mr-3"
-  style="width: 100px" *ngIf='player.active' (click)='updateActive(false)'>Деактивирай</button>
-  <button class="btn btn-sm btn-outline-success mr-3"
-  style="width: 100px"  *ngIf='!player.active' (click)='updateActive(true)'>Активирай</button>
-  <button class="btn btn-sm btn-outline-danger mr-3"
-  style="width: 100px"  (click)='deletePlayer()'>Delete</button>
-</td>
+<ng-container *ngIf='!isEditing'>
+  <td class="p-2" *ngIf="player">{{player.firstName}} {{player.lastName}}</td>
+  <td class="p-2" *ngIf="player">{{player.position}}</td>
+  <td class="p-2">
+    <button class="btn btn-sm btn-outline-danger mr-3" style="width: 100px" *ngIf='!isEditing' (click)='enableEditing()'>Редактирай</button>
+    <button class="btn btn-sm btn-outline-danger mr-3" style="width: 100px" (click)='deletePlayer()'>Изтрий</button>
+  </td>
+</ng-container>
+
+<ng-container *ngIf='isEditing'>
+  <td colspan="3">
+    <form class="form-inline" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <input type="text" class="form-control input-sm mr-sm-2" id="firstName" required [(ngModel)]="player.firstName" name="firstName"
+          value="player.firstName">
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control input-sm mr-sm-2" id="lastName" required [(ngModel)]="player.lastName" name="lastName"
+          value="player.lastName">
+      </div>
+      <div class="form-group">
+        <select class="form-control input-sm mr-sm-2" id="position" [(ngModel)]="player.position" name="position">
+          <option value="Вратар">Вратар</option>
+          <option value="Защитник">Защитник</option>
+          <option value="Халф">Халф</option>
+          <option value="Нападател">Нападател</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-sm btn-outline-success mr-3">Запази</button>
+      <button class="btn btn-sm btn-outline-danger mr-3" style="width: 100px" (click)='disableEditing()'>Откажи</button>
+    </form>
+  </td>
+</ng-container>

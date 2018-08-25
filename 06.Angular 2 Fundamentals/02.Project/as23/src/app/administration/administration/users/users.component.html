@@ -1,0 +1,13 @@
+<h1>Потребители</h1>
+<table class="table-striped table-borderless">
+  <thead>
+    <tr>
+      <th>Име</th>
+      <th>Имейл</th>
+      <th>Администратор</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="p-3" user-details [user]='user' *ngFor="let user of users"></tr>
+  </tbody>
+</table>
